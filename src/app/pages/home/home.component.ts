@@ -22,6 +22,8 @@ export class HomeComponent {
   searchByName(query: string) {
     this.anime = this.apiService.searchAnime(query);
     console.log(this.anime);
-    
   }
+
+  
+
 }
