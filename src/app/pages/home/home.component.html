@@ -1,7 +1,12 @@
-<div class="">
-    <input type="text" class="" name="drinkName" [(ngModel)]="name" placeholder="Search anime by name">
-    <!-- <button class="btn btn-primary" type="button" id="drinkName" (click)="searchByName(name)">Search</button> -->
-    <button class="btn btn-primary" type="button" [routerLink]="['/home', name]" >Search</button>
+<div class="input-group">
+    <form>
+        <div class="input-group m-3">
+            <input type="text" class="form-control" name="animeName" [(ngModel)]="name"
+                placeholder="Search anime by name" aria-label="Search anime by name" aria-describedby="button-addon2">
+            <button class="btn btn-primary" type="button" id="animeName" [routerLink]="['/home', name]">Search</button>
+            <!-- (click)="searchByName(jsonIn.name)" -->
+        </div>
+    </form>
 </div>
 
 <ul class="list-group col-sm-12 col-md-4 col-lg-3 my-2" *ngFor="let el of anime">
@@ -10,3 +15,19 @@
         <p>{{el.title}}</p>
     </a>
 </ul>
+
+<div *ngFor="let el of anime" class="row justify-content-center">
+    <!-- with routerLink you can only specify static link, with [routerLink] you can use dynamic values to generate the link -->
+    <div class="col-sm-12 col-md-6 col-lg-4 my-2" routerLink="/detail/{{el.id}}" style="width: 18rem;">
+        <div class="card" role="button">
+            <img src="{{el.image}}" class="card-img-top" alt="">
+            <!-- ...="{{...}}" is for binding with string interpolation, [...]="..." is for object binding -->
+            <div class="card-body">
+                <h5 class="card-title">{{el.title}}</h5>
+                <p class="text-muted">{{el.title}}</p>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
