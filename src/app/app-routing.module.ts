@@ -6,7 +6,16 @@ import { DetailComponent } from './pages/detail/detail.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home' },
-  { path: 'home', component: HomeComponent },
+  {
+    path: 'home', component: HomeComponent,
+    resolve: {
+      anime:
+        (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+          return inject(APIService).listAnime();
+        },
+
+    },
+  },
   {
     path: 'home/:query', component: HomeComponent,
     /* resolve: {

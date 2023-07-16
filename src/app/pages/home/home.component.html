@@ -9,25 +9,33 @@
     </form>
 </div>
 
-<ul class="list-group col-sm-12 col-md-4 col-lg-3 my-2" *ngFor="let el of anime">
-    <a routerLink="/detail/{{el.id}}">
-        <img src="{{el.image}}" alt="">
-        <p>{{el.title}}</p>
-    </a>
-</ul>
+<!-- {{anime | json}} -->
 
-<div *ngFor="let el of anime" class="row justify-content-center">
-    <!-- with routerLink you can only specify static link, with [routerLink] you can use dynamic values to generate the link -->
-    <div class="col-sm-12 col-md-6 col-lg-4 my-2" routerLink="/detail/{{el.id}}" style="width: 18rem;">
-        <div class="card" role="button">
-            <img src="{{el.image}}" class="card-img-top" alt="">
-            <!-- ...="{{...}}" is for binding with string interpolation, [...]="..." is for object binding -->
-            <div class="card-body">
-                <h5 class="card-title">{{el.title}}</h5>
-                <p class="text-muted">{{el.title}}</p>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+<section class="wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-4 mb-4" *ngFor="let el of anime">
+                <div class="card text-dark card-has-bg click-col" style="background-image:url('{{el.image}}');">
+                    <img class="card-img d-none" src="{{el.image}}" alt="">
+                    <div class="card-img-overlay d-flex flex-column">
+                        <div class="card-body">
+                            <small class="card-meta mb-2">{{el.title}}</small>
+                            <h4 class="card-title mt-0 "><a class="text-dark" [routerLink]="'/detail/' + el._id">
+                                    {{el.title}}</a></h4>
+                            <small><i class="bi bi-star-fill"></i> {{el.title}}</small>
+                        </div>
+                        <div class="card-footer">
+                            <div class="media">
+                                <img class="mr-3 rounded-circle" src="{{el.image}}" alt="" style="max-width:50px">
+                                <div class="media-body">
+                                    <h6 class="my-0 text-dark d-block">{{el.title}}</h6>
+                                    <small>{{el.title}}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</section>
