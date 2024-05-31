@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import data from "./ResApi.json";
-import { Anime, AnimeDetail } from '../pages/models/anime.model';
+import { AnimeApiRes } from '../models/anime.model';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -8,10 +10,13 @@ import { Anime, AnimeDetail } from '../pages/models/anime.model';
 
 export class APIService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   listAnime() {
-    return <Anime[]>data.data;
+    return this.httpClient.get<AnimeApiRes>('assets/json/data.json').pipe(
+      map(response => response.data),
+    );
+    // return <Anime[]>data.data;
   }
 
   searchAnime(query: string) {
@@ -22,6 +27,6 @@ export class APIService {
         return null;
       }
     }
-  
+
   }
 }

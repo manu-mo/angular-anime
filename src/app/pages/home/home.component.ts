@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Anime, AnimeDetail } from '../models/anime.model';
+import { Anime } from '../../models/anime.model';
 import { APIService } from 'src/app/service/api.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -16,7 +16,10 @@ export class HomeComponent {
   constructor(private apiService: APIService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.anime = this.apiService.listAnime();
+    this.apiService.listAnime().subscribe((res) => {
+      this.anime = res as Anime[];
+      console.log('--- result :: ', this.anime);
+    })
   }
 
   searchByName(query: string) {
@@ -24,6 +27,6 @@ export class HomeComponent {
     console.log(this.anime);
   }
 
-  
+
 
 }
