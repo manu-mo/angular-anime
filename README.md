@@ -10,17 +10,14 @@ per le icone: npm i bootstrap-icons --save e in style.css: @import "~bootstrap-i
         "scripts": [
         "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
     ]
-3. npm i @ng-bootstrap/ng-bootstrap
+/* solo se voglio usare le modali: */  
+3. npm i @ng-bootstrap/ng-bootstrap //se da errori: npm i @ng-bootstrap/ng-bootstrap --legacy-peer-deps
 4. add the following to app.module.ts:
     import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     imports: [
         NgbModule
     ]
 5. add the following to app.component.html:
-
-
-
-
 <ul class="list-group col-sm-12 col-md-4 col-lg-3 my-2" *ngFor="let el of anime">
     <a routerLink="/detail/{{el.id}}">
         <img src="{{el.image}}" alt="">
@@ -41,4 +38,4 @@ per le icone: npm i bootstrap-icons --save e in style.css: @import "~bootstrap-i
             </div>
         </div>
     </div>
-</div> -->
+</div>
